@@ -3,7 +3,7 @@ plugins {
 	id 'war'
 	id 'org.springframework.boot' version '2.7.17'
 	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
-	id "org.sonarqube" version "4.2.1.3168"
+	id "org.sonarqube" version "4.3.0.2102"
 }
 
 group = 'com.'
@@ -34,6 +34,6 @@ tasks.named('test') {
 sonarqube {
     properties {
         property 'sonar.host.url', 'http://localhost:9000'
-        property 'sonar.login', 'squ_bc17b0640f688fc9b132837dec767604e13ee9c2'
+        property 'sonar.token', 'squ_bc17b0640f688fc9b132837dec767604e13ee9c2'
     }
 }
