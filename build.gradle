@@ -33,7 +33,7 @@ tasks.named('test') {
 
 sonarqube {
     properties {
-        property 'sonar.host.url', 'http://localhost:9000'
+        property 'sonar.host.url', 'http://172.28.200.141:9000'
         property 'sonar.login', 'squ_bc17b0640f688fc9b132837dec767604e13ee9c2'
     }
 }
