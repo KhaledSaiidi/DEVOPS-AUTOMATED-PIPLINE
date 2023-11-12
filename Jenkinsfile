@@ -5,11 +5,13 @@ pipeline{
             agent{
                 docker {
                     image 'openjdk:17'
+                    args '-u root' // Use root user for more privileges (if necessary)
                 }
             }
             steps{
                 script{
                     withSonarQubeEnv(credentialsId: 'sonar-token') {
+                        sh 'xargs --version'
                         sh 'chmod +x gradlew'
                         sh './gradlew sonar'
                     }
