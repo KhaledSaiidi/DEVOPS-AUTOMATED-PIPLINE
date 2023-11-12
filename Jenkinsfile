@@ -11,6 +11,7 @@ pipeline{
             steps{
                 script{
                     withSonarQubeEnv(credentialsId: 'sonar-token') {
+                        sh 'apt-get update && apt-get install -y findutils' // Install findutils package which provides xargs
                         sh 'xargs --version'
                         sh 'chmod +x gradlew'
                         sh './gradlew sonar'
