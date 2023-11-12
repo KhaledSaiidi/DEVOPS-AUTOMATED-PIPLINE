@@ -9,6 +9,7 @@ pipeline{
             }
             steps{
                 script{
+                    sh 'apt-get update && apt-get install -y findutils'
                     withSonarQubeEnv(credentialsId: 'sonar-token') {
                         sh 'chmod +x gradlew'
                         sh './gradlew sonar --warning-mode all'
