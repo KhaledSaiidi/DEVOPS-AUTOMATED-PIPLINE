@@ -18,10 +18,13 @@ pipeline{
                 }
             }
         }
-    }
-    post{
-        always{
-            echo "Success"
+
+        stage("docker build & docker push"){
+            steps{
+                script {
+                    
+                }
+            }
         }
     }
 }
