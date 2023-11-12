@@ -10,8 +10,10 @@ pipeline{
             steps{
                 script{
                     withSonarQubeEnv(credentialsId: 'sonar-token') {
+                        docker.image('openjdk:17').inside {
                         sh 'chmod +x gradlew'
                         sh './gradlew sonarqube --warning-mode all'
+                        }
                     }
                 }
             }
