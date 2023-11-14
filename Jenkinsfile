@@ -41,7 +41,7 @@ pipeline{
             steps{
                 script{
                     dir('kubernetes/') {
-                        sh 'helm datree test myapp/'
+                        sh 'microk8s helm datree test myapp/'
                     }
                 }
             }
