@@ -41,7 +41,9 @@ pipeline{
             steps{
                 script{
                     dir('kubernetes/') {
-                        sh 'microk8s helm datree test myapp/'
+                        withEnv(['DATREE_TOKEN=GJdx2cP2TCDyUY3EhQKgTc']) {
+                            sh 'microk8s helm datree test myapp/'
+                        }
                     }
                 }
             }
