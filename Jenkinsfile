@@ -41,6 +41,7 @@ pipeline{
             steps{
                 script{
                     dir('kubernetes/') {
+                        sh 'microk8s helm datree config set offline local'
                         sh 'microk8s helm datree test myapp/'
                     }
                 }
