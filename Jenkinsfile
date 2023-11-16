@@ -41,14 +41,12 @@ pipeline{
             steps{
                 script{
                     dir('kubernetes/') {
-                        sh 'microk8s helm repo add datree-webhook https://datreeio.github.io/admission-webhook-datree'
                         sh 'microk8s helm repo update'
-                        sh 'microk8s helm install -n datree datree-webhook datree-webhook/datree-admission-webhook --debug \
+                        sh 'microk8s helm upgrade --install -n datree datree-webhook datree-webhook/datree-admission-webhook --debug \
                         --create-namespace \
                         --set datree.token=GJdx2cP2TCDyUY3EhQKgTc \
                         --set datree.clusterName=$(microk8s kubectl config current-context)'
-                        sh 'microk8s helm datree config set offline local'
-                        sh 'microk8s helm datree test myapp/'
+                        sh 'microk8s helm datree test myapp'
                     }
                 }
             }
