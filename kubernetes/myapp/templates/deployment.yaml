@@ -5,7 +5,7 @@ metadata:
   labels:
     {{- include "myapp.labels" . | nindent 4 }}
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: {{ .Values.nonExistentVariable  }}
   selector:
     matchLabels:
       {{- include "myapp.selectorLabels" . | nindent 6 }}
