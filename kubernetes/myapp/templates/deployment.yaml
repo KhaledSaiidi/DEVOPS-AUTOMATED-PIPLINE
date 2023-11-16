@@ -1,11 +1,11 @@
 apiVersion: apps/v1
-kind: Deployment
+Kind: Deployment
 metadata:
   name: {{ include "myapp.fullname" . }}
   labels:
     {{- include "myapp.labels" . | nindent 4 }}
 spec:
-  replicas: {{ .Values.nonExistentVariable  }}
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
       {{- include "myapp.selectorLabels" . | nindent 6 }}
