@@ -40,8 +40,6 @@ pipeline{
         stage("identifying misconfigs using datree in helm charts"){
             steps{
                 script{
-                    sh 'sudo usermod -a -G microk8s jenkins'
-                    sh 'newgrp microk8s'
                     dir('kubernetes/') {
                         sh 'microk8s helm repo add datree-webhook https://datreeio.github.io/admission-webhook-datree'
                         sh 'microk8s helm repo update'
