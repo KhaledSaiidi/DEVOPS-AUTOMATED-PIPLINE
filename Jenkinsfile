@@ -46,8 +46,7 @@ pipeline{
                         --create-namespace \
                         --set datree.token=GJdx2cP2TCDyUY3EhQKgTc \
                         --set datree.clusterName=$(microk8s kubectl config current-context)'
-                        sh 'microk8s helm test datree-webhook --debug'
-
+                        sh 'microk8s helm test datree-webhook --namespace datree --debug'
                     }
                 }
             }
