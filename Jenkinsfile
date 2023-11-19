@@ -72,6 +72,14 @@ pipeline{
                 }
             }
         }
+
+        stage("Manual deploy approval"){
+            steps{
+                script {
+                    
+                }
+            }
+        }
     }
 
     post {
