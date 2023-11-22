@@ -67,7 +67,7 @@ pipeline{
         stage("Manual approval"){
             steps{
                 script {
-                    timeout(2) {
+                    timeout(time: 10, unit: 'MINUTES') {
                       mail bcc: '', 
                         body: "<br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> Go to build url and approve the deployement request. <br> URL de build: ${env.BUILD_URL}", 
                         cc: '', 
@@ -77,8 +77,8 @@ pipeline{
                         replyTo: '', 
                         subject: "${currentBuild.result} CI: Project name -> ${env.JOB_NAME}", 
                         to: "saiidiikhaled@gmail.com";
-                        input(id: "Deploy Gate", message: "Deploy ${params.project_name}?", ok: 'Deploy')
                     }
+                    input(id: "DeployGate", message: "Deploy ${params.project_name}?", ok: 'Deploy')
                 }
             }
         }
