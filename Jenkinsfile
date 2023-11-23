@@ -89,6 +89,21 @@ pipeline{
                 script {
                     withCredentials([string(credentialsId: 'docker_pass', variable: 'docker_password')]) {
                         dir('kubernetes/') {
+                         // Check if the secret exists
+                         def secretExists = sh(script: 'microk8s kubectl get secret registry-secret', returnStatus: true) == 0
+                        // If the secret exists, delete it
+                        if (secretExists) {
+                        sh 'microk8s kubectl delete secret registry-secret'
+                        }
+
+                        // Create the Docker registry secret
+                            sh 'kubectl create secret docker-registry registry-secret \
+                            --docker-server=172.28.200.141:8083 \
+                            --docker-username=admin \
+                            --docker-password=$docker_password \
+                            --docker-email=khaled.saiidi@outlook.com'
+                            
+                        // Deploy Helm chart
                             sh 'microk8s helm upgrade --install --set image.repository="172.28.200.141:8083/springapp" --set image.tag="${VERSION}" myjavaapp myapp/' 
                         }
                     }                
