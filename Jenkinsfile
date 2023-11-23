@@ -87,9 +87,11 @@ pipeline{
         stage("Deploying application on K8S cluster"){
             steps{
                 script {
-                    dir('kubernetes/') {
-                        sh 'microk8s helm upgrade --install --set image.repository="172.28.200.141:8081/springapp" --set image.tag="${VERSION}" myjavaapp myapp/' 
-                    } 
+                    withCredentials([string(credentialsId: 'docker_pass', variable: 'docker_password')]) {
+                        dir('kubernetes/') {
+                            sh 'microk8s helm upgrade --install --set image.repository="172.28.200.141:8083/springapp" --set image.tag="${VERSION}" myjavaapp myapp/' 
+                        }
+                    }                
                 }
             }
         }
