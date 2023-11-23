@@ -88,7 +88,7 @@ pipeline{
             steps{
                 script {
                     dir('kubernetes/') {
-                        sh 'microk8s helm upgrade --install --set image.repository="172.28.200.141:8081/repository/docker-hosted/springapp" --set image.tag="${VERSION}" myjavaapp myapp/' 
+                        sh 'microk8s helm upgrade --install --set image.repository="172.28.200.141:8081/springapp" --set image.tag="${VERSION}" myjavaapp myapp/' 
                     } 
                 }
             }
