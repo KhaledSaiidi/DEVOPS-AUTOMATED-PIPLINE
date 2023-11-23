@@ -97,7 +97,7 @@ pipeline{
                         }
 
                         // Create the Docker registry secret
-                            sh 'kubectl create secret docker-registry registry-secret \
+                            sh 'microk8s kubectl create secret docker-registry registry-secret \
                             --docker-server=172.28.200.141:8083 \
                             --docker-username=admin \
                             --docker-password=$docker_password \
