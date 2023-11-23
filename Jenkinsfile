@@ -77,8 +77,8 @@ pipeline{
                         replyTo: '', 
                         subject: "${currentBuild.result} CI: Project name -> ${env.JOB_NAME}", 
                         to: "saiidiikhaled@gmail.com";
+                        input(id: "DeployGate", message: "Should i proceed to Deployement ?", ok: 'Deploy')
                     }
-                    input(id: "DeployGate", message: "Deploy ${params.project_name}?", ok: 'Deploy')
                 }
             }
         }
