@@ -103,16 +103,17 @@ pipeline{
                             --docker-email=khaled.saiidi@outlook.com'
                             
                         // Create the Docker registry secret
-                            def dockerLoginStatus = sh(script: 'docker login -u admin -p $docker_password 172.28.200.141:8083', returnStatus: true)
+                        def dockerLoginStatus = sh(script: 'docker login -u admin -p $docker_password 172.28.200.141:8083', returnStatus: true)
 
-                            // Check if Docker login was successful
-                            if (dockerLoginStatus == 0) {
-                                echo 'Docker login successful. Proceeding with deployment.'
-                                // Deploy Helm chart
-                                sh 'microk8s helm upgrade --install --set image.repository=172.28.200.141:8083/springapp --set image.tag=${VERSION} myjavaapp myapp/'
+                        // Check if Docker login was successful
+                        if (dockerLoginStatus == 0) {
+                            echo 'Docker login successful. Proceeding with deployment.'
+                        // Deploy Helm chart
+                        sh 'microk8s helm upgrade --install --set image.repository=172.28.200.141:8083/springapp --set image.tag=${VERSION} myjavaapp myapp/'
                         } else {
-                                error 'Docker login failed. Aborting deployment.'
+                            error 'Docker login failed. Aborting deployment.'
                             }
+                        }
                     }                
                 }
             }
