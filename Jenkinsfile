@@ -98,13 +98,13 @@ pipeline{
 
                         // Create the Docker registry secret
                             sh 'microk8s kubectl create secret docker-registry registry-secret \
-                            --docker-server=172.28.200.141:8083 \
+                            --docker-server=172.28.200.141:8081 \
                             --docker-username=admin \
                             --docker-password=$docker_password \
                             --docker-email=khaled.saiidi@outlook.com'
                             
                         // Deploy Helm chart
-                            sh 'microk8s helm upgrade --install --set image.repository="172.28.200.141:8083/springapp" --set image.tag="${VERSION}" myjavaapp myapp/' 
+                            sh 'microk8s helm upgrade --install --set image.repository="172.28.200.141:8081/repository/docker-hosted/springapp" --set image.tag="${VERSION}" myjavaapp myapp/' 
                         }
                     }                
                 }
