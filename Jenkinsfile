@@ -104,7 +104,7 @@ pipeline{
                             --docker-email=khaled.saiidi@outlook.com'
                             
                         // Deploy Helm chart
-                            sh 'microk8s helm upgrade --install --set image.repository="172.28.200.141:8081/repository/docker-hosted/springapp" --set image.tag="${VERSION}" myjavaapp myapp/' 
+                            sh 'microk8s helm upgrade --install --set image.repository="172.28.200.141:8081/repository/docker-hosted/v2/springapp/manifests/${VERSION}" --set image.tag="${VERSION}" myjavaapp myapp/' 
                         }
                     }                
                 }
