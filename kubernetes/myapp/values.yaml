@@ -5,7 +5,7 @@
 replicaCount: 2
 
 image:
-  repository: PLACEHOLDER_REPOSITORY
+  repository: 172.28.200.141:8083/springapp
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: PLACEHOLDER_TAG
