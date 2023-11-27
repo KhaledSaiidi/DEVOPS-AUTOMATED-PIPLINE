@@ -122,7 +122,7 @@ pipeline{
         stage("Verifying App Deployement"){
             steps{
                 script {
-                    sh 'microk8s kubectl run curl --image=curlimages/curl -i --rm --restart=Never -- curl myjavaapp-myapp:3000'
+                    sh 'microk8s kubectl run curl --image=curlimages/curl -i --rm --restart=Never -- curl myjavaapp-myapp:8080'
                 }
             }
         }
