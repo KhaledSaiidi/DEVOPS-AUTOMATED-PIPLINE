@@ -1,14 +1,13 @@
-package main.java.com.DEVOPSAUTOMATEDPIPLINE.demo;
+package com.DEVOPSAUTOMATEDPIPLINE;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-
 @SpringBootApplication
-public class SampleWebApplication {
+public class DevopsAutomatedPiplineApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SampleWebApplication.class, args);
+		SpringApplication.run(DevopsAutomatedPiplineApplication.class, args);
 	}
 
 }
