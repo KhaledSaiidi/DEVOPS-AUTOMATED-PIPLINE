@@ -4,7 +4,8 @@ pipeline{
         VERSION = "${env.BUILD_ID}"
     }
     stages{
-        stage("Sonar Quality Check"){
+
+        stage("SonarQube Code Check"){
             steps{
                 script{
                     withSonarQubeEnv(credentialsId: 'sonar-token') {
@@ -21,7 +22,9 @@ pipeline{
                 }
             }
         }
-        stage("docker build & push imgs"){
+
+
+        stage("docker build/push images"){
             steps{
                 script {
                     withCredentials([string(credentialsId: 'docker_pass', variable: 'docker_password')]) {
@@ -35,7 +38,9 @@ pipeline{
                 }
             }
         }
-        stage("identifying misconfigs through Linting"){
+
+
+        stage("identifying mis-configuration with Linting"){
             steps{
                 script{
                     dir('kubernetes/') {
@@ -44,6 +49,7 @@ pipeline{
                 }
             }
         }
+
         stage("Pushing the helm charts to nexus"){
             steps{
                 script {
@@ -59,7 +65,8 @@ pipeline{
                 }
             }
         }
-        stage("Manual approval"){
+
+        stage("Approve Manually"){
             steps{
                 script {
                     timeout(time: 10, unit: 'MINUTES') {
@@ -77,6 +84,7 @@ pipeline{
                 }
             }
         }
+
         stage("Deploying application on K8S cluster"){
             steps{
                 script {
@@ -112,6 +120,7 @@ pipeline{
                 }
             }
         }
+
         stage("Verifying App Deployement"){
             steps{
                 script {
@@ -123,6 +132,7 @@ pipeline{
             }
         }
     }
+
     post {
     always {
         mail bcc: '', 
