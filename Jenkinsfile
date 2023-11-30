@@ -123,7 +123,10 @@ pipeline{
         stage("Verifying App Deployement"){
             steps{
                 script {
-                    sh 'microk8s kubectl run curl --image=curlimages/curl -i --rm --restart=Never -- curl myjavaapp-myapp:8080'
+                    // Get the IP address of one of the nodes
+                def nodeIP = sh(script: 'microk8s kubectl get nodes -o jsonpath="{.items[0].status.addresses[0].address}"', returnStdout: true).trim()
+                // Run curl from within the pod using the node port
+                sh "microk8s kubectl run curl --image=curlimages/curl -i --rm --restart=Never -- curl ${nodeIP}:32522"
                 }
             }
         }
