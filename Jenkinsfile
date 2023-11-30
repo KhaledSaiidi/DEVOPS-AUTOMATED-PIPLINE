@@ -21,8 +21,7 @@ pipeline{
                 }
             }
         }
-
-        stage("docker build & docker push"){
+        stage("docker build & push imgs"){
             steps{
                 script {
                     withCredentials([string(credentialsId: 'docker_pass', variable: 'docker_password')]) {
@@ -36,17 +35,15 @@ pipeline{
                 }
             }
         }
-        
-        stage("identifying misconfigs through Linting Helm Charts"){
+        stage("identifying misconfigs through Linting"){
             steps{
                 script{
                     dir('kubernetes/') {
-                        sh 'helm lint myapp'
+                        sh 'microk8s helm lint myapp'
                     }
                 }
             }
         }
-
         stage("Pushing the helm charts to nexus"){
             steps{
                 script {
@@ -62,8 +59,6 @@ pipeline{
                 }
             }
         }
-
-
         stage("Manual approval"){
             steps{
                 script {
@@ -82,8 +77,6 @@ pipeline{
                 }
             }
         }
-
-
         stage("Deploying application on K8S cluster"){
             steps{
                 script {
@@ -119,7 +112,6 @@ pipeline{
                 }
             }
         }
-
         stage("Verifying App Deployement"){
             steps{
                 script {
@@ -131,7 +123,6 @@ pipeline{
             }
         }
     }
-
     post {
     always {
         mail bcc: '', 
