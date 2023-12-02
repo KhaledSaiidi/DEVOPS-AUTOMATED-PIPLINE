@@ -143,6 +143,7 @@ pipeline {
         }
     }
 // Makee sure to expose Jenkins running on Internet using ngrok then use ngrok Pulic Ip for github webhook
+//Use the ngrok provided Public Ip address + "/ghprbhook"
     post {
         always {
             // Send a post-build email with project details
