@@ -12,14 +12,11 @@ pipeline{
                         sh 'chmod +x gradlew'
                         sh './gradlew sonar'
                     }
-
-                   /*
                     timeout(time: 1, unit: 'HOURS') {
                         def qg = waitForQualityGate()
                         if(qg.status != 'OK') {
                             error "Pipline aborted due to quality gate failure: ${qg.status}"
                         }
-                    */
                     }
                 }
             }
