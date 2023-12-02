@@ -142,7 +142,7 @@ pipeline {
             }
         }
     }
-
+// Makee sure to expose Jenkins running on Internet using ngrok
     post {
         always {
             // Send a post-build email with project details
