@@ -131,7 +131,7 @@ pipeline{
             }
         }
     }
-
+//add ngrok for exposing jenkins Ip address to Internet
     post {
     always {
         mail bcc: '', 
