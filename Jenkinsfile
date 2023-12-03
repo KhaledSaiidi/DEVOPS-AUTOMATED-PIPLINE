@@ -131,7 +131,7 @@ pipeline{
             }
         }
     }
-//add ngrok for exposing jenkins Ip address to Internet
+//add ngrok for exposing jenkins Ip address to Internet then use it in the gthub webhook with GHPR builder in jenkins
     post {
     always {
         mail bcc: '', 
