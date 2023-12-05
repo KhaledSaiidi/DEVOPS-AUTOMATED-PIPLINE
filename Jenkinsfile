@@ -39,7 +39,7 @@ pipeline{
         }
 
 
-        stage("identifying mis-configuration with Linting"){
+        stage("identifying mis-configuration with Datreee.io/Linting"){
             steps{
                 script{
                     dir('kubernetes/') {
